@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Throw Throw Tomato</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <!-- Always-visible title buttons -->
+    <div id="topButtons">
+      <button id="settingsBtn" title="Settings">⚙️</button>
+      <button id="updateLogBtn" title="Update Log">📜</button>
+    </div>
+
+    <!-- In-game HUD -->
+    <div id="ui" class="hide">
+      <div id="timer">Time: 20</div>
+      <div id="score">Score: 0</div>
+      <div id="hudControls">
+        <button id="pauseBtn" type="button">Pause</button>
+        <button id="exitBtn" type="button" title="Exit to Main Menu">Exit</button>
+      </div>
+    </div>
+
+    <!-- Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Countdown overlay -->
+    <div id="countdown"></div>
+
+    <!-- Final Score badge (compat container) -->
+    <div id="finalScore"></div>
+
+    <!-- Main Menu -->
+    <div id="mainMenu" class="overlay center-stack active">
+      <div class="menu-stack">
+        <button id="playBtn" class="primary">Play</button>
+        <button id="openScoresBtn">High Scores</button>
+      </div>
+    </div>
+
+    <!-- High Scores Screen -->
+    <div id="highscoresScreen" class="overlay center-stack">
+      <h2 id="scoresTitle">🏆 High Scores (Today)</h2>
+      <ol id="scoresList" class="score-list"></ol>
+      <div class="row">
+        <button id="showAllTimeBtn">Highest Scores</button>
+        <button id="scoresToMenuBtn" class="primary">Main Menu</button>
+      </div>
+    </div>
+
+    <!-- Name Entry -->
+    <div id="nameEntry" class="overlay center-stack">
+      <h2>🎉 New High Score!</h2>
+      <div class="big-score">Your Score: <span id="finalScoreValue">0</span></div>
+      <label for="playerName">Enter your name</label>
+      <input id="playerName" type="text" maxlength="16" placeholder="Your name" />
+      <div class="row">
+        <button id="saveScoreBtn" class="primary">Save</button>
+        <button id="cancelSaveBtn">Main Menu</button>
+      </div>
+    </div>
+
+    <!-- Round Over -->
+    <div id="toMenuOverlay" class="overlay center-stack">
+      <h2>Round Over</h2>
+      <div class="big-score">Final Score: <span id="finalScoreValue2">0</span></div>
+      <button id="toMenuBtn" class="primary">Main Menu</button>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="overlay-panel" style="display:none;">
+      <div class="panel-header">
+        <h2 class="panel-title">Settings</h2>
+        <button id="closeSettingsX" class="close-x" title="Close">×</button>
+      </div>
+      <div class="panel-content">
+        <label>Music Volume
+          <input id="musicVolume" type="range" min="0" max="1" step="0.01" value="1">
+        </label>
+        <label>Sound Effects Volume
+          <input id="sfxVolume" type="range" min="0" max="1" step="0.01" value="1">
+        </label>
+      </div>
+      <div class="panel-footer">
+        <button id="closeSettings">Close</button>
+      </div>
+    </div>
+
+    <!-- Update Log Panel -->
+    <div id="updateLogPanel" class="overlay-panel" style="display:none;">
+      <div class="panel-header">
+        <h2 class="panel-title">Update Log</h2>
+        <button id="closeUpdateLogX" class="close-x" title="Close">×</button>
+      </div>
+      <div class="panel-content" id="updateLogContent">
+        <p><strong>v.1.2.4</strong> – Fixed strict‑mode crash; buttons live; title art visible; scrollable panels; big red “×”.</p>
+        <p><strong>v.1.2.2</strong> – Hardened init; z-index cleanup; countdown lock for Exit.</p>
+      </div>
+      <div class="panel-footer">
+        <button id="closeUpdateLog">Close</button>
+      </div>
+    </div>
+
+    <!-- Version Number (bottom-left) -->
+    <div id="versionLabel">v.1.2.4</div>
+  </div>
+
+  <!-- Script at end (reliable DOM), no async/defer -->
+  <script src="script.js"></script>
+</body>
+</html>
